@@ -1,3 +1,4 @@
 Rails.application.routes.draw do
-  root: "sessions#create"
+  devise_for :users
+  #root: "sessions#create"
 end

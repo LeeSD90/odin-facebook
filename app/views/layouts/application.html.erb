@@ -22,6 +22,8 @@
         </div>
       </div>
       <% flash.each do |message_type, message| %>
+        <% if message_type == "notice" then message_type = "success" end %>
+        <% if message_type == "alert" then message_type = "danger" end %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
       <%= yield %>

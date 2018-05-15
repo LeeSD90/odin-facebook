@@ -14,6 +14,7 @@
       <div class="row">
         <div class="col-md-6">
           <%= link_to "Home", root_path %>
+          <%= link_to "Users", users_path %>
         </div>
         <div class="col-md-6 text-right">
           <% if current_user then %>
@@ -21,6 +22,7 @@
           <% end %>
         </div>
       </div>
+
       <% flash.each do |message_type, message| %>
         <% if message_type == "notice" then message_type = "success" end %>
         <% if message_type == "alert" then message_type = "danger" end %>

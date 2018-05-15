@@ -1,9 +1,29 @@
 <h1>User:</h1>
-User Email: <%= @user.email %>
+User Email: <%= @user.email %><br/>
+
+<% unless current_user?(@user) || current_user.friend?(@user) %>
+    <%= form_for current_user.friendships.build do |f| %>
+        <%= hidden_field_tag :user, @user.id %>
+        <%= f.submit "Send friend request", class: "btn btn-sm btn-primary" %>
+    <% end %>
+<% end %>
+
 <hr>
 <h2>Friends:</h2>
 <ul>
-    <% @user.friendships.each do |f| %>
-        <%= link_to f.friend.email, user_path(f.friend) %>
+    <% @user.get_friends.each do |f| %>
+        <li><%= link_to f.email, user_path(f) %></li>
     <% end %>
 </ul>
+<% if current_user?(@user) then %>
+<h2>Friend requests:</h2>
+<ul>
+    <% @user.get_friend_requests.each do |friend| %>
+        <%= link_to friend.email, user_path(friend) %>
+        <%= form_for current_user.pending_request(friend) do |f| %>
+            <%= hidden_field_tag :user, friend.id %>
+            <%= f.submit "Accept friend request", class: "btn btn-xs btn-primary" %>
+        <% end %>
+    <% end %>
+</ul>
+<% end %>

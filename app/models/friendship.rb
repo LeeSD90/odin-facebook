@@ -4,6 +4,7 @@ class Friendship < ApplicationRecord
 
     after_create    :create_inverse, unless: :has_inverse?
     after_destroy   :destroy_inverses, if: :has_inverse?
+    after_commit    :update_inverse
 
     validates   :user_id, presence: true
     validates   :friend_id, presence: true
@@ -16,6 +17,10 @@ class Friendship < ApplicationRecord
 
         def destroy_inverse
             self.class.where(inverse_match_options).destroy_all
+        end
+
+        def update_inverse
+            self.class.where(inverse_match_options).update(accepted: self.accepted)
         end
 
         def has_inverse?

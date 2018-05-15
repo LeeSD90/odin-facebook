@@ -9,18 +9,15 @@ class User < ApplicationRecord
   has_many  :inverse_friendships, :class_name => "Friendship", :foreign_key => "friend_id"
   has_many  :inverse_friends, :through => :inverse_friendships, :source => :user
 
-  #TODO fix show friends after sending request but before accepting it
-  #TODO fix request showing on wrong side of relationship
-
   def get_friend_requests
     friends.where("accepted = ?", false)
   end
 
   def get_friends
-    fs = inverse_friendships.where(accepted: true)
+    fs = friendships.where(accepted: true)
     result = Array.new
     fs.each do |f|
-      result << User.find(f.user.id)
+      result << User.find(f.friend_id) if f.inverse.accepted
     end
     return result
   end
@@ -38,7 +35,7 @@ class User < ApplicationRecord
   end
 
   def friend?(user)
-    get_friends.include?(user)
+    get_friends.include?(user) || user.get_friend_requests.include?(self) || self.get_friend_requests.include?(user)
   end
 
 end

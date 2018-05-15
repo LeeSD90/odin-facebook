@@ -2,9 +2,9 @@
 User Email: <%= @user.email %><br/>
 
 <% unless current_user?(@user) || current_user.friend?(@user) %>
-    <%= form_for current_user.friendships.build do |f| %>
+    <%= form_tag friendships_path, method: :post do %>
         <%= hidden_field_tag :user, @user.id %>
-        <%= f.submit "Send friend request", class: "btn btn-sm btn-primary" %>
+        <%= submit_tag "Send friend request", class: "btn btn-sm btn-primary" %>
     <% end %>
 <% end %>
 

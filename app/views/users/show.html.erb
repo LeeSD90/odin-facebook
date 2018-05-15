@@ -1,1 +1,9 @@
+<h1>User:</h1>
 User Email: <%= @user.email %>
+<hr>
+<h2>Friends:</h2>
+<ul>
+    <% @user.friendships.each do |f| %>
+        <%= link_to f.friend.email, user_path(f.friend) %>
+    <% end %>
+</ul>

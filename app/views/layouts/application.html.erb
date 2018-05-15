@@ -11,14 +11,21 @@
 
   <body>
     <div class="container">
-      <% if current_user then %>
-      Signed in as <%= current_user.email %>. <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-      <% end %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= link_to "Home", root_path %>
+        </div>
+        <div class="col-md-6 text-right">
+          <% if current_user then %>
+            Signed in as <%= current_user.email %>. <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+          <% end %>
+        </div>
+      </div>
       <% flash.each do |message_type, message| %>
         <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
       <% end %>
       <%= yield %>
-      <div class="row"><%= debug(params) if Rails.env.development? %></div>
+      <div class="row"><div class="col-md-12"><%= debug(params) if Rails.env.development? %></div></div>
     </div>
   </body>
 </html>

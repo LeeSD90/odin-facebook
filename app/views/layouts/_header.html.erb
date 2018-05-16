@@ -4,7 +4,7 @@
     <nav>
       <ul class="nav navbar-nav navbar-left navnotice">
         <% if current_user %>
-            <li><%= link_to "Signed in as " + current_user.email, user_path(current_user) %></li>
+            <li><%= link_to "Signed in as " + current_user.name + " (" + current_user.email + ")", user_path(current_user) %></li>
             <% if current_user.get_friend_requests %>
                 <li><%= link_to "You have " + pluralize(current_user.get_friend_requests.count, 'Friend Request', 'Friend Requests'), user_path(current_user) %></li>
             <% end %>

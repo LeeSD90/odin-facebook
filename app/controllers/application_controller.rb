@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
 
+    #TODO bug here?
     # Devise override
     def after_sign_in_path_for(resource)
-        edit_user_registration_path
+        users_path
     end
 
     # Devise override

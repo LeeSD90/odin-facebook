@@ -1,0 +1,7 @@
+<% @requests.each do |friend| %>
+    <%= link_to friend.email, user_path(friend) %>
+    <%= form_for current_user.pending_request(friend) do |f| %>
+        <%= hidden_field_tag :user, friend.id %>
+        <%= f.submit "Accept friend request", class: "btn btn-xs btn-primary" %>
+    <% end %>
+<% end %>

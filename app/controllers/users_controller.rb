@@ -8,7 +8,8 @@ require 'will_paginate/array'
 
     def show
         @user = User.find(params[:id])
-        @users = @user.get_friends.paginate(:page => params[:page])
+        @friends = @user.get_friends.paginate(:page => params[:page], :per_page => 10)
+        @requests = @user.get_friend_requests.paginate(:page => params[:page])
     end
 
 end

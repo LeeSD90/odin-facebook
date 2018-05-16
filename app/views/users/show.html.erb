@@ -12,7 +12,7 @@ Email: <%= @user.email %><br/>
 <h2>Friends:</h2>
 <ul>
     <% @user.get_friends.each do |f| %>
-        <li><%= link_to f.email, user_path(f) %></li>
+        <li><%= link_to f.name, user_path(f) %></li>
     <% end %>
 </ul>
 <% if current_user?(@user) then %>

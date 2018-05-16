@@ -10,7 +10,7 @@ user.password = 'password'
 user.name = 'Bob'
 user.save!
 
-50.times do
+150.times do
     u = User.new()
     u.email = Faker::Internet.unique.email
     u.password = 'password'
@@ -19,7 +19,7 @@ user.save!
 end
 
 #Send and accept requests
-200.times do
+300.times do
         u = User.find(rand(1..User.count))
         u2 = User.find(rand(1..User.count))
         u.send_request(u2) unless u == u2 || u.friend?(u2)
@@ -27,7 +27,7 @@ end
 end
 
 #Send requests but don't accept
-100.times do
+200.times do
     u = User.find(rand(1..User.count))
     u2 = User.find(rand(1..User.count))
     u.send_request(u2) unless u == u2 || u.friend?(u2)

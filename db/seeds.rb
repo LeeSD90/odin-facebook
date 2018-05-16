@@ -16,12 +16,19 @@ user.save!
     u.password = 'password'
     u.name = Faker::Name.name
     u.save!
-
-    u2 = User.find(rand(1..User.count))
-    if u != u2 && !u.get_friends.include?(u2) then
-        u.send_request(u2)
-        u2.accept_request(u)
-    end
 end
 
-#user.friendships.create(:friend_id => User.find_by(:email => "test@example.com").id)
+#Send and accept requests
+200.times do
+        u = User.find(rand(1..User.count))
+        u2 = User.find(rand(1..User.count))
+        u.send_request(u2) unless u == u2 || u.friend?(u2)
+        u2.accept_request(u)
+end
+
+#Send requests but don't accept
+100.times do
+    u = User.find(rand(1..User.count))
+    u2 = User.find(rand(1..User.count))
+    u.send_request(u2) unless u == u2 || u.friend?(u2)
+end

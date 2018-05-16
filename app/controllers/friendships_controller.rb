@@ -14,7 +14,7 @@ class FriendshipsController < ApplicationController
   def update
     user = User.find(params[:user])
     current_user.accept_request(user)
-    flash[:success] = "You are now friends with #{user.email}!"
+    flash[:success] = "You are now friends with #{user.name}!"
     redirect_to user
   end
 

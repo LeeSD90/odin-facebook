@@ -10,11 +10,13 @@ Email: <%= @user.email %><br/>
 
 <hr>
 <h2>Friends:</h2>
-<ul>
-    <% @user.get_friends.each do |f| %>
-        <li><%= link_to f.name, user_path(f) %></li>
-    <% end %>
-</ul>
+
+<%= will_paginate %>
+    <ul class="users">
+        <%= render @users %>
+    </ul>
+<%= will_paginate %>
+
 <% if current_user?(@user) then %>
 <h2>Friend requests:</h2>
 <ul>

@@ -1,0 +1,7 @@
+<%= form_for post.comments.build do |f| %>
+    <div class="field">
+        <%= f.hidden_field :post_id, :value => post.id %>
+        <%= f.text_area :content, placeholder: "Add a comment..." %>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-outline-primary btn-xs" %>
+<% end %>

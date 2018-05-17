@@ -10,7 +10,7 @@ class PostsController < ApplicationController
       flash[:success] = "Post created!"
       redirect_to current_user
     else
-      flash[:error] = "Error creating post..."
+      flash[:alert] = "Error creating post..."
       redirect_to current_user
     end
   end

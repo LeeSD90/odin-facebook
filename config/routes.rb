@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-
-  get 'likes/create'
-  get 'likes/destroy'
-  get 'comments/create'
-  get 'comments/destroy'
-  get 'posts/index'
-  get 'posts/create'
-  get 'posts/destroy'
   devise_scope  :user do
     authenticated :user do
       root  'users#index', as: :authenticated_root
@@ -23,5 +15,6 @@ Rails.application.routes.draw do
   resources :friendships, only: [:create, :update, :destroy]
   resources :posts, :only => [:create, :destroy, :index]
   resources :comments, :only => [:create, :destroy]
+  resources :likes, :only => [:create, :destroy]
 
 end

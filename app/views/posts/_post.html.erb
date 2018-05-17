@@ -1,11 +1,20 @@
 <div class="post">
-    <h3><%= post.author.name %> Posted -</h3><br>
-    <%= post.content %>
-
+    <div class="author">
+        <%= post.author.name %> Posted -
+    </div>
+    <div class="content">
+        <%= post.content %>
+    </div>
+    <div class="likes">
+        <%= pluralize(post.likes.count, 'like') %>
+    </div>
+    <div class="like-button">
+        <%= render partial: 'likes/like_form', locals: {post: post} %>
+    </div>
     <%= render post.comments %>
-</div>
 
-<div class="comment-form">
-    <%= render partial: 'comments/form', locals: { post: post } %>
+    <div class="comment-form">
+        <%= render partial: 'comments/form', locals: { post: post } %>
+    </div>
+    <hr>
 </div>
-<hr>

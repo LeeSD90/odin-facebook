@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'likes/create'
+  get 'likes/destroy'
   get 'comments/create'
   get 'comments/destroy'
   get 'posts/index'

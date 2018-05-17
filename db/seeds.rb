@@ -46,3 +46,10 @@ end
     u = User.find(rand(1..User.count))
     u.comments.create(:post_id => p.id, :content => Faker::Lorem.sentence(rand(2..10)))
 end
+
+# Likes
+5000.times do
+    p = Post.find(rand(1..Post.count))
+    u = User.find(rand(1..User.count))
+    p.likes.create(:user_id => u.id) unless p.likes.where(user_id: u.id).first
+end

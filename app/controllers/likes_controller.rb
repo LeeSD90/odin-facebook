@@ -14,6 +14,15 @@ class LikesController < ApplicationController
   end
 
   def destroy
+    post = Post.find(params[:post_id])
+    @like = post.likes.where(:user_id => current_user.id).first
+    if @like.destroy
+      flash[:warning] = "Post unliked!"
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:alert] = "Couldn't unlike that post for some reason..."
+      redirect_back(fallback_location: root_path)
+    end
   end
 
 end

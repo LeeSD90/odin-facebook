@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many  :inverse_friends, :through => :inverse_friendships, :source => :user
 
   has_many  :posts, foreign_key: "author_id", dependent:  :destroy
+  has_many  :comments
 
   def get_friend_requests
     friends.where("accepted = ?", false)

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'comments/create'
+  get 'comments/destroy'
   get 'posts/index'
   get 'posts/create'
   get 'posts/destroy'
@@ -18,5 +20,6 @@ Rails.application.routes.draw do
   resources :users, :only => [:index, :show]
   resources :friendships, only: [:create, :update, :destroy]
   resources :posts, :only => [:create, :destroy, :index]
+  resources :comments, :only => [:create, :destroy]
 
 end

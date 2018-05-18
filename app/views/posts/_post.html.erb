@@ -5,6 +5,9 @@
     <div class="content">
         <%= post.content %>
     </div>
+    <div class="date">
+        Posted on <%= post.created_at.strftime("%F at %T") %>
+    </div>
     <div class="likes">
         <%= pluralize(post.likes.count, 'like') %>
     </div>

@@ -37,7 +37,7 @@ end
 # Make some posts
 800.times do
     u = User.find(rand(1..User.count))
-    u.posts.create(:content => Faker::Lorem.sentence(rand(1..30)))
+    u.posts.create(:content => Faker::Lorem.sentence(rand(1..30)), :created_at => Faker::Time.backward(30))
 end
 
 # Comments

@@ -13,6 +13,10 @@ class User < ApplicationRecord
   has_many  :comments
   has_many  :likes
 
+  def post_feed
+    Post.where("author_id = ? OR author_id IN (?)", id, get_friends.map{|f| f.id })
+  end
+
   def get_friend_requests
     friends.where("accepted = ?", false)
   end

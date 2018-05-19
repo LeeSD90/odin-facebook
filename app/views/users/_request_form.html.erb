@@ -1,0 +1,4 @@
+<%= form_for current_user.friendships.build, :html => { :class => "request-form" } do |f| %>
+    <%= hidden_field_tag :user, user.id %>
+    <%= f.submit "Add Friend", class: "btn btn-xs btn-primary" %>
+<% end %>

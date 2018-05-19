@@ -1,5 +1,6 @@
 <% unless current_user == user %>
     <li>
         <%= link_to user.name, user %>
+        <%= render 'request_form', user: user unless current_user.friend?(user) %>
     </li>
 <% end %>

@@ -5,6 +5,7 @@
             <%= @user.name %>
         </h1>
         Email: <%= @user.email %><br/>
+        <%= render 'request_form', user: @user unless current_user?(@user) || current_user.friend?(@user) %>
         <hr>
 
         <h2>Friends:</h2>

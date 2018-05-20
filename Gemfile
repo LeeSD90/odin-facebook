@@ -31,6 +31,7 @@ gem 'bootstrap-sass'
 gem 'devise'
 gem 'faker'
 gem 'will_paginate'
+gem 'letter_opener', :group => :development
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

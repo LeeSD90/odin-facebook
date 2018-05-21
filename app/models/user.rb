@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many  :comments
   has_many  :likes
 
+  after_create  :send_welcome_mail
+
   def post_feed
     Post.where("author_id = ? OR author_id IN (?)", id, get_friends.map{|f| f.id })
   end
@@ -44,6 +46,10 @@ class User < ApplicationRecord
 
   def friend?(user)
     get_friends.include?(user) || user.get_friend_requests.include?(self) || self.get_friend_requests.include?(user)
+  end
+
+  def send_welcome_mail
+    UserMailer.welcome_email(self).deliver
   end
 
 end

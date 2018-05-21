@@ -32,6 +32,7 @@ gem 'devise'
 gem 'faker'
 gem 'will_paginate'
 gem 'letter_opener', :group => :development
+gem 'sendgrid-ruby'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
